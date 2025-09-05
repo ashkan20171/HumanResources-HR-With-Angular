@@ -6,46 +6,57 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-
-import { Router } from '@angular/router';
-import { RecaptchaComponent } from "../recaptcha/recaptcha";
-import { RecaptchaModule } from "ng-recaptcha"
+import { Router, ActivatedRoute } from '@angular/router';
+import { RecaptchaComponent } from '../recaptcha/recaptcha';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule,
+  standalone: true,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
+    MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     MatIconModule,
-    RecaptchaComponent,
-    RecaptchaModule],
+    MatInputModule,
+    RecaptchaModule,
+    RecaptchaComponent
+  ],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  RecaptchaResponse: any;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  private returnUrl = '/dashboard';
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private auth: AuthService
+  ) {
     this.loginForm = this.fb.group({
       username: [''],
-      password: [''],
-      recaptcha: ['']
+      password: ['']
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const r = this.route.snapshot.queryParamMap.get('returnUrl');
+    if (r) this.returnUrl = r;
+  }
 
   onSubmit(): void {
-    const username = this.loginForm.value.username.trim();
-    const password = this.loginForm.value.password.trim();
+    const username = (this.loginForm.value.username || '').toString().trim();
+    const password = (this.loginForm.value.password || '').toString().trim();
 
     if (username === 'ashkan' && password === 'ashkan') {
-      localStorage.setItem('user', username);
-      this.router.navigate(['/dashboard']);
+      this.auth.login(username);
+      this.router.navigateByUrl(this.returnUrl);
     } else {
       alert('نام کاربری و رمز عبور درست نمی‌باشد.');
     }
