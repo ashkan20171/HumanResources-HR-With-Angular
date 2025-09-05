@@ -1,0 +1,28 @@
+.captcha-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 20px !important;
+    margin-top: 50px !important;
+    
+  }
+  
+  .captcha-box {
+    font-size: 24px !;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    padding: 20px !important;
+    margin-top: 50px !important;
+    border-radius: 5px !important;
+    
+    
+  }
+ .recaptcha-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  width: fit-content;
+  transform: scale(1.1);
+}

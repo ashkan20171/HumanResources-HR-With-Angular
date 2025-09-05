@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-recaptcha',
-  imports: [],
+  imports: [RecaptchaModule, RecaptchaFormsModule],
   templateUrl: './recaptcha.html',
   styleUrl: './recaptcha.css'
 })
-export class Recaptcha {
+export class RecaptchaComponent {
+onCaptchaResolved($event: string|null) {
+throw new Error('Method not implemented.');
+}
 
 }
