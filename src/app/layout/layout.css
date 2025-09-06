@@ -18,8 +18,8 @@
   /* بخش اصلی (محتوا + سایدبار) */
   .main {
     display: flex;
-    flex: 1;
-    overflow: hidden;
+    flex: 0;
+    overflow: auto;
   }
   
   /* محتوای اصلی */

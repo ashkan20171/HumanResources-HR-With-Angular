@@ -11,15 +11,14 @@
 }
 
 .main-logo {
-  width: 47%;
+  width: 520px;
   margin-bottom: 10px;
-  justify-content: center !important;
 }
 
 .company-text {
   font-size: 18px;
   font-weight: bold;
-  color: black;
+  color: #5d47ff;
 }
 
 .welcome-message {

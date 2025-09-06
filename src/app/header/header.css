@@ -8,10 +8,7 @@
   align-items: center;
 }
 
-.header-section {
-  display: flex;
-  align-items: center;
-}
+
 
 .right {
   justify-content: flex-start;
@@ -66,8 +63,40 @@
   font-weight: bold;
   font-family: 'Vazirmatn', sans-serif;
 }
-.header-section {
-  text-align: center;
-  height: 10px;
-  width: 10px;
+
+
+/* === Layout fix for toolbar === */
+.toolbar-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  padding-inline: 16px;
+}
+
+.header-section.right,
+.header-section.center,
+.header-section.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-section.center {
+  margin: 0 auto;
+}
+
+.logo-glow {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.user {
+  font-weight: 600;
+}
+
+.logout-btn {
+  border-radius: 8px;
 }
