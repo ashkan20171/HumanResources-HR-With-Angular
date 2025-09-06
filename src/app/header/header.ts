@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
+  standalone: true,
   selector: 'app-header',
   imports: [MatToolbarModule, MatIconModule],
   templateUrl: './header.html',
@@ -29,8 +30,7 @@ export class Header implements OnInit {
   }
 
   logout(): void {
-    sessionStorage.removeItem('user');
-    localStorage.removeItem('user');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 }
