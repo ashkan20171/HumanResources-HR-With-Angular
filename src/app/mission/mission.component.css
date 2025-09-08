@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.register-container {
+.mission-container {
   padding: 30px;
   background: linear-gradient(to bottom right, #f5f7fa, #e2e6ec);
   min-height: 100vh;
@@ -49,11 +49,6 @@ mat-checkbox {
   color: #444;
 }
 
-.form-actions {
-  width: 100%;
-  margin-top: 20px;
-  text-align: left;
-}
 
 button {
   border-radius: 8px !important;
@@ -102,18 +97,22 @@ mat-icon {
   font-size: 20px;
 }
 
-button mat-icon {
-  vertical-align: middle;
+button.mat-icon-button img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
 }
 
-.summary-card {
-  margin-top: 30px;
-  background-color: #ede7f6;
-  padding: 20px;
-  border-radius: 10px;
-  color: #4a148c;
-  box-shadow: 0 4px 10px rgba(74, 20, 140, 0.1);
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 2;
+button.mat-icon-button:hover img {
+  transform: scale(1.2);
+}
+
+.btn-submit {
+  width: 80px;
+  height: 30%;
+  border-radius: 5px;
+  justify-content: left;
+  margin-right: 93%;
+  background-color: #5e35b1;
+  color: white;
 }

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: [''],
       password: [''],
-      recaptcha: ['']
+      recaptcha: [''],
     });
   }
 
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
     if (username === 'ashkan' && password === 'ashkan') {
       localStorage.setItem('user', username);
-      this.router.navigate(['/protected/dashboard']);
+      this.router.navigate(['/dashboard']);
     } else {
       alert('نام کاربری و رمز عبور درست نمی‌باشد.');
     }

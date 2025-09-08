@@ -13,7 +13,7 @@ export const routes: Routes = [
       import('./login/login.component').then((m) => m.LoginComponent),
   },
   {
-    path: 'protected',
+    path: '',
     loadComponent: () =>
       import('./layout/layout.component').then((m) => m.LayoutComponent),
     canActivate: [AuthGuard],

@@ -1,8 +1,9 @@
 .dashboard-container {
-  padding: 20px;
+  padding: 50px;
   background: linear-gradient(to right, #f8f9fa, #e0e0ff);
   border-radius: 15px;
   font-family: 'IRANSans', sans-serif;
+  
 }
 
 .logo-section {

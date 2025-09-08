@@ -1,26 +1,24 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 
-export interface Leave {
-  id: number;
-  date: string;
-  fromHour: string;
-  toHour: string;
-  totalHour: string;
-  leaveType: string;
-  status: string;
-  description: string;
-}
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
+import moment from 'moment-jalaali';
+import { JalaliDateAdapter } from '../shared/jalali-date.adapter';
+import { JALALI_DATE_FORMATS } from '../shared/jalali-date.format';
+import { MatButtonModule } from '@angular/material/button';
+
+moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: false });
 
 @Component({
   selector: 'app-leave',
@@ -29,25 +27,29 @@ export interface Leave {
   styleUrls: ['./leave.component.css'],
   imports: [
     CommonModule,
-    MatCardModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule,
     MatSelectModule,
-    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatCheckboxModule,
     MatTableModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    ReactiveFormsModule
+    MatNativeDateModule
+  ],
+  providers: [
+    { provide: DateAdapter, useClass: JalaliDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: JALALI_DATE_FORMATS }
   ]
 })
-export class LeaveComponent {
-  leaveForm!: FormGroup;
-  selectedRow: Leave | null = null;
-  dataSource: Leave[] = [];
+export class LeaveComponent implements OnInit {
+  registerForm!: FormGroup;
+  dataSource: any[] = [];
+  editingId: number | null = null;
   displayedColumns = ['id', 'date', 'fromHour', 'toHour', 'totalHour', 'leaveType', 'status', 'description', 'actions'];
-  months = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور'];
-  selectedMonth = '';
+  selectedMonth: string = '';
+  months: string[] = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
 
   constructor(private fb: FormBuilder) {
     this.leaveForm = this.fb.group({
@@ -58,6 +60,9 @@ export class LeaveComponent {
       leaveType: ['', Validators.required],
       description: ['']
     });
+  }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
   submitForm() {

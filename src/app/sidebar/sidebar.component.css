@@ -4,7 +4,7 @@
 
 .sidenav {
   width: 280px;
-  background: linear-gradient(to bottom right, #8e24aa, #d81b60);
+  background-color: #67adee !important;
   color: white;
   padding: 10px 15px;
   border-top-right-radius: 20px;
@@ -13,6 +13,8 @@
   direction: rtl;
   margin-right: 10px;
   justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size:large !important;
 }
 
 .sidebar-header {
