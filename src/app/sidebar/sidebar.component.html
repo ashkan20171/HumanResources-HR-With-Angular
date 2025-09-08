@@ -1,0 +1,54 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <div class="sidebar-header">
+      <img src="assets/Arm1.png" class="sidebar-logo" alt="Logo" />
+      <h3 class="sidebar-title">منوی سامانه</h3>
+    </div>
+
+    <mat-accordion>
+      <!-- بخش حقوق -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="assets/icons/money.svg" class="icon" />
+            حقوق و دستمزد
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item [routerLink]="'/protected/register-hourse'">
+            <img src="assets/icons/clock.svg" class="icon" />
+            ثبت ساعت
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/protected/leave'">
+            <img src="assets/icons/leave.svg" class="icon" />
+            درخواست مرخصی
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/protected/mission'">
+            <img src="assets/icons/mission.svg" class="icon" />
+            مأموریت
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+
+      <!-- بخش گزارش -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="assets/icons/report.svg" class="icon" />
+            گزارشات
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item [routerLink]="'/protected/bills'">
+            <img src="assets/icons/bill.svg" class="icon" />
+            فیش حقوقی
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-sidenav>
+  
+  <mat-sidenav-content class="content">
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

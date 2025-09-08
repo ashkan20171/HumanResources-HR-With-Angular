@@ -1,0 +1,25 @@
+  <div class="login-container">
+    <mat-card class="login-card">
+      <div class="logo">
+        <img src="assets/Arm1.png" alt="HR logo">
+      </div>
+      <h3>ورود به سیستم</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">       
+            <div class="input-group">
+  <input matInput formControlName="username" placeholder="نام کاربری" />
+  <mat-icon class="input-icon">person</mat-icon>
+</div>
+
+<div class="input-group">
+  <input matInput type="password" formControlName="password" placeholder="رمز عبور" />
+  <mat-icon class="input-icon">lock</mat-icon>
+</div>
+          
+          <br>
+          <app-recaptcha class="re-captcha1" ></app-recaptcha>
+          <button mat-raised-button color="primary" type="submit" class="submit-button">
+          ورود
+          </button>
+      </form>
+    </mat-card>
+  </div>

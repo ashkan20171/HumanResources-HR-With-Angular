@@ -1,0 +1,39 @@
+mat-card-content{
+  direction: rtl !important;
+  background-color: rgb(240, 240, 240) !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size: large !important;
+  
+ 
+}
+mat-label{
+  direction: rtl !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size: medium !important;
+  margin-top: 10px !important;
+  margin-right: 10px !important;
+}
+.row{
+  background-color: aliceblue !important;
+}
+th{
+  background-color: black !important;
+   color: white !important;
+    font-size: large !important; 
+    text-align: center !important;
+}
+td{
+  direction: rtl !important;
+  text-align: center !important;
+  color: black !important;
+}
+button{
+  width: 100px !important;
+  height: 20px !important;
+  text-align: center !important;
+}
+button{
+  text-align: center !important;
+  font-size: medium !important;
+  background-color: aliceblue !important;
+}

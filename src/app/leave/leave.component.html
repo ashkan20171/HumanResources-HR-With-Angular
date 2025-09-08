@@ -1,0 +1,126 @@
+<div class="leave-container">
+
+  <mat-card class="form-title">
+    <mat-card-content>درخواست مرخصی</mat-card-content>
+  </mat-card>
+
+  <form [formGroup]="leaveForm" (ngSubmit)="submitForm()">
+    <mat-card class="form-card">
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>تاریخ</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>از ساعت</mat-label>
+          <input matInput formControlName="fromHour">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>تا ساعت</mat-label>
+          <input matInput formControlName="toHour">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>جمع ساعت</mat-label>
+          <input matInput formControlName="totalHour" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>نوع مرخصی</mat-label>
+          <mat-select formControlName="leaveType">
+            <mat-option value="استحقاقی">استحقاقی</mat-option>
+            <mat-option value="استعلاجی">استعلاجی</mat-option>
+            <mat-option value="تشویقی">تشویقی</mat-option>
+            <mat-option value="بدون حقوق">بدون حقوق</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>توضیحات</mat-label>
+          <input matInput formControlName="description">
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <mat-card style="margin-top: 5px;">
+      <button mat-raised-button color="primary" class="btn-submit" type="submit">ثبت</button>
+    </mat-card>
+  </form>
+
+  <mat-card class="filter-card">
+    <mat-card-content>
+      <span>انتخاب ماه:</span>
+      <mat-form-field appearance="fill">
+        <mat-select [(value)]="selectedMonth">
+          <mat-option *ngFor="let m of months" [value]="m">{{ m }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-icon-button (click)="downloadExcel()">
+        <img src="assets/icons/excel.svg" alt="excel" width="24" />
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="table-card">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ردیف</th>
+        <td mat-cell *matCellDef="let e">{{ e.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>تاریخ</th>
+        <td mat-cell *matCellDef="let e">{{ e.date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fromHour">
+        <th mat-header-cell *matHeaderCellDef>از ساعت</th>
+        <td mat-cell *matCellDef="let e">{{ e.fromHour }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="toHour">
+        <th mat-header-cell *matHeaderCellDef>تا ساعت</th>
+        <td mat-cell *matCellDef="let e">{{ e.toHour }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalHour">
+        <th mat-header-cell *matHeaderCellDef>جمع ساعت</th>
+        <td mat-cell *matCellDef="let e">{{ e.totalHour }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="leaveType">
+        <th mat-header-cell *matHeaderCellDef>نوع</th>
+        <td mat-cell *matCellDef="let e">{{ e.leaveType }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>وضعیت</th>
+        <td mat-cell *matCellDef="let e">{{ e.status }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>توضیحات</th>
+        <td mat-cell *matCellDef="let e">{{ e.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>عملیات</th>
+        <td mat-cell *matCellDef="let e">
+          <button mat-icon-button color="primary" (click)="editRow(e)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteRow(e)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</div>

@@ -1,0 +1,51 @@
+.dashboard-container {
+  padding: 20px;
+  background: linear-gradient(to right, #f8f9fa, #e0e0ff);
+  border-radius: 15px;
+  font-family: 'IRANSans', sans-serif;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-logo {
+  width: 520px;
+  margin-bottom: 10px;
+}
+
+.company-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #5d47ff;
+}
+
+.welcome-message {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(129, 98, 255, 0.2);
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  text-align: center;
+  color: #444;
+  transition: all 0.3s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(129, 98, 255, 0.3);
+}
