@@ -1,0 +1,134 @@
+@import url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css');
+
+* {
+  font-family: 'Vazir', sans-serif;
+  direction: rtl;
+  box-sizing: border-box;
+}
+
+.register-container {
+  padding: 30px;
+  background: linear-gradient(to bottom right, #f5f7fa, #e2e6ec);
+  min-height: 100vh;
+}
+
+.form-title mat-card-content {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #5e35b1;
+  padding: 10px 0;
+}
+
+.form-card {
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(94, 53, 177, 0.1);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+mat-form-field {
+  flex: 1 1 250px;
+  min-width: 250px;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+mat-checkbox {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #444;
+}
+
+.form-actions {
+  width: 100%;
+  margin-top: 20px;
+  text-align: left;
+}
+
+button {
+  border-radius: 8px !important;
+  font-weight: bold !important;
+}
+
+.month-export {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fefefe;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 150, 136, 0.1);
+}
+
+.table-card {
+  margin-top: 40px;
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+}
+
+table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #009688;
+  color: rgb(248, 18, 18);
+  font-weight: bold;
+}
+
+td {
+  background-color: #fafafa;
+  color: #333;
+}
+
+mat-icon {
+  font-size: 20px;
+}
+
+button.mat-icon-button img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+button.mat-icon-button:hover img {
+  transform: scale(1.2);
+}
+
+.summary-card {
+  margin-top: 30px;
+  background-color: #ede7f6;
+  padding: 20px;
+  border-radius: 10px;
+  color: #4a148c;
+  box-shadow: 0 4px 10px rgba(74, 20, 140, 0.1);
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 2;
+}
+.btn-submit {
+  width: 80px;
+  height: 30%;
+  border-radius: 5px;
+  justify-content: left;
+  margin-right: 93%;
+  background-color: #5e35b1;
+  color: white;
+}

@@ -1,0 +1,59 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 280px;
+  background-color: #67adee !important;
+  color: white;
+  padding: 10px 15px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  direction: rtl;
+  margin-right: 10px;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size:large !important;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.sidebar-logo {
+  width: 65px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+  justify-content: right;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  vertical-align: middle;
+  filter: brightness(0) invert(1); /* سفید کردن آیکون‌ها */
+}
+
+mat-list-item {
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+mat-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

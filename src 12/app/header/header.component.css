@@ -1,0 +1,64 @@
+.mat-toolbar {
+  background-color: #67adee !important;
+  height: 80px;
+  border-radius: 12px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  justify-content: flex-start;
+}
+
+.center {
+  justify-content: center;
+  gap: 15px;
+}
+
+.left {
+  justify-content: flex-end;
+}
+
+.logo-glow {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.logo-glow:hover {
+  box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.5);
+}
+
+.user {
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.logout-btn mat-icon {
+  background-color: #67adee !important;
+  color: white;
+  border-radius: 52%;
+  padding: 4px;
+  transition: background 0.4s ease-in-out;
+}
+
+.logout-btn mat-icon:hover {
+  background-color: #c62828;
+  cursor: pointer;
+}
+
+.title {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Vazirmatn', sans-serif;
+}

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="toolbar-custom">
+  <!-- لوگو در سمت راست -->
+  <div class="header-section right">
+    <img src="assets/Arm1.png" alt="logo" class="logo-glow" />
+  </div>
+
+  <!-- نام کاربر و دکمه خروج در وسط -->
+  <div class="header-section center">
+    <span class="user">خوش آمدید: {{ username }}</span>
+    <button mat-icon-button class="logout-btn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+
+  <!-- عنوان سیستم در سمت چپ -->
+  <div class="header-section left">
+    <span class="title">سامانه ثبت ساعت</span>
+  </div>
+</mat-toolbar>
