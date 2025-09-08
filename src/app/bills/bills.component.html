@@ -1,63 +1,81 @@
- <div class="row">
-  <div class="container">
-    <mat-card appearance="outlined">
+<div class="page" dir="rtl">
+  <mat-card class="title-card" appearance="outlined">
     <mat-card-content>فیش حقوقی</mat-card-content>
-    </mat-card>
-  </div>
-   <mat-card>
-    <mat-label>ماه :
-     <mat-form-field appearance="fill">
-       <mat-label></mat-label>
-       <mat-select [(value)]="selectedOption">
-        <mat-option *ngFor="let option of options" [value]="12">
-           {{ option.viewValue }}
-        </mat-option>
-       </mat-select>
-     </mat-form-field>
-    </mat-label>
-   </mat-card>   
-<br> 
+  </mat-card>
 
-<mat-card>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-card class="controls-card">
+    <div class="controls-row">
+      <mat-form-field class="month-field" appearance="fill">
+        <mat-label>ماه</mat-label>
+        <mat-select [value]="selectedKey()" (valueChange)="onSelectChange($event)">
+          <mat-option *ngFor="let opt of options" [value]="opt.value">
+            {{ opt.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-           
-  <!-- Position Column -->
-  <ng-container matColumnDef="index">
-    <th mat-header-cell *matHeaderCellDef> ردیف </th>
-    <td mat-cell *matCellDef="let element"> {{element.index}} </td>
-  </ng-container>
+      <span class="spacer"></span>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="receiptNumber">
-    <th mat-header-cell *matHeaderCellDef> شماره فیش</th>
-    <td mat-cell *matCellDef="let element"> {{element.receiptNumber}} </td>
-  </ng-container>
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="preview()">
+          <mat-icon>visibility</mat-icon> پیش‌نمایش
+        </button>
+        <button mat-raised-button color="accent" (click)="print()">
+          <mat-icon>print</mat-icon> پرینت / Save as PDF
+        </button>
+        <button mat-raised-button color="warn" (click)="downloadPdf()">
+          <mat-icon>file_download</mat-icon> دانلود PDF
+        </button>
+      </div>
+    </div>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="year">
-    <th mat-header-cell *matHeaderCellDef> سال </th>
-    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
-  </ng-container>
+    <div class="preview-toggle">
+      <label><input type="checkbox" [(ngModel)]="showInlinePreview"> نمایش پیش‌نمایش داخل صفحه</label>
+    </div>
+  </mat-card>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="month">
-    <th mat-header-cell *matHeaderCellDef> ماه</th>
-    <td mat-cell *matCellDef="let element"> {{element.month}} </td>
-  </ng-container>
-   
-  <ng-container matColumnDef="operation">
-    <th mat-header-cell *matHeaderCellDef> عملیات </th>
-    <td mat-cell *matCellDef="let element"> {{element.operation}}
-      <button mat-button>
-  <img src="assets/icons/download.png" alt="دانلود" width="16" height="16" style="margin-left: 4px;">
-</button>
-    </ng-container>        
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <!-- گارد: اگر selectedBill وجود نداشت، چیزی رندر نکن -->
+  <mat-card class="preview-card" *ngIf="showInlinePreview && selectedBill()">
+    <div class="preview-host">
+      {{ monthTitles[+(selectedBill()!.month)] }} {{ selectedBill()!.year }} - شماره فیش: {{ selectedBill()!.receiptNumber }}
+    </div>
+  </mat-card>
 
-</table>
-</mat-card>
+  <mat-card class="table-card">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> ردیف </th>
+        <td mat-cell *matCellDef="let e"> {{ e.index }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="receiptNumber">
+        <th mat-header-cell *matHeaderCellDef> شماره فیش </th>
+        <td mat-cell *matCellDef="let e"> {{ e.receiptNumber }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef> سال </th>
+        <td mat-cell *matCellDef="let e"> {{ e.year }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="month">
+        <th mat-header-cell *matHeaderCellDef> ماه </th>
+        <td mat-cell *matCellDef="let e"> {{ monthTitles[+e.month] }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="operation">
+        <th mat-header-cell *matHeaderCellDef> عملیات </th>
+        <td mat-cell *matCellDef="let e">
+          <button mat-icon-button (click)="selectedKey.set(e.year+'-'+e.month); downloadPdf()">
+            <mat-icon>file_download</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </mat-card>
 </div>
