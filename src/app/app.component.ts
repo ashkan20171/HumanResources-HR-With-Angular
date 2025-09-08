@@ -8,7 +8,7 @@ declare var moment: any;
   selector: 'app-root',
   imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   showHeader = false;

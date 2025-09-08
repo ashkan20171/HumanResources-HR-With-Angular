@@ -6,7 +6,7 @@ import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
   standalone: true,
   imports: [RecaptchaModule, RecaptchaFormsModule],
   templateUrl: './recaptcha.component.html',
-  styleUrl: './recaptcha.component.css'
+  styleUrls: ['./recaptcha.component.css']
 })
 export class RecaptchaComponent {
 onCaptchaResolved($event: string|null) {

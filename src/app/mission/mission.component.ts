@@ -39,7 +39,7 @@ moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: false });
        MatNativeDateModule
      ],
   templateUrl: './mission.component.html',
-  styleUrl: './mission.component.css',
+  styleUrls: ['./mission.component.css'],
   providers: [
     { provide: DateAdapter, useClass: JalaliDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: JALALI_DATE_FORMATS }

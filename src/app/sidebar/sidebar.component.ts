@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
     MatListModule,
   RouterModule],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
 

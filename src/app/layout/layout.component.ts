@@ -9,7 +9,7 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, SidebarComponent],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css'
+  styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
 

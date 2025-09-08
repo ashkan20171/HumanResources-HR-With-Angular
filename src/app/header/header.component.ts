@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-header',
   imports: [MatToolbarModule, MatIconModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+  styleUrls: ['./header.component.css'],
   
 })
 export class HeaderComponent implements OnInit {
