@@ -1,32 +1,36 @@
 <div class="leave-container">
 
+  <!-- عنوان -->
   <mat-card class="form-title">
     <mat-card-content>درخواست مرخصی</mat-card-content>
   </mat-card>
 
+  <!-- فرم -->
   <form [formGroup]="leaveForm" (ngSubmit)="submitForm()">
     <mat-card class="form-card">
       <div class="form-row">
+
+        <!-- تاریخ جلالی -->
         <mat-form-field appearance="fill">
           <mat-label>تاریخ</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="date">
+          <input matInput [matDatepicker]="picker" formControlName="date" />
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>از ساعت</mat-label>
-          <input matInput formControlName="fromHour">
+          <input matInput formControlName="fromHour" placeholder="09:00" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>تا ساعت</mat-label>
-          <input matInput formControlName="toHour">
+          <input matInput formControlName="toHour" placeholder="17:00" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>جمع ساعت</mat-label>
-          <input matInput formControlName="totalHour" readonly>
+          <input matInput formControlName="totalHour" readonly />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -39,34 +43,60 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field appearance="fill">
+          <mat-label>وضعیت</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="در دست بررسی">در دست بررسی</mat-option>
+            <mat-option value="تایید شده">تایید شده</mat-option>
+            <mat-option value="رد شده">رد شده</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>توضیحات</mat-label>
-          <input matInput formControlName="description">
+          <input matInput formControlName="description" />
         </mat-form-field>
       </div>
     </mat-card>
 
-    <mat-card style="margin-top: 5px;">
-      <button mat-raised-button color="primary" class="btn-submit" type="submit">ثبت</button>
+    <mat-card style="margin-top: 6px;">
+      <button mat-raised-button color="primary" class="btn-submit" type="submit">
+        {{ selectedRow ? 'ویرایش' : 'ثبت' }}
+      </button>
     </mat-card>
   </form>
 
+  <!-- فیلتر و اکسل -->
   <mat-card class="filter-card">
     <mat-card-content>
       <span>انتخاب ماه:</span>
       <mat-form-field appearance="fill">
-        <mat-select [(value)]="selectedMonth">
+        <mat-select [(value)]="selectedMonth" (selectionChange)="recalcSummary()">
           <mat-option *ngFor="let m of months" [value]="m">{{ m }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-icon-button (click)="downloadExcel()">
+
+      <button mat-icon-button (click)="downloadExcel()" matTooltip="دانلود فایل اکسل">
         <img src="assets/icons/excel.svg" alt="excel" width="24" />
       </button>
     </mat-card-content>
   </mat-card>
 
+  <!-- خلاصه‌ وضعیت مرخصی‌ها (۵ آیتم) -->
+  <mat-card class="summary-card">
+    <mat-card-content>
+      <p>✅ مجموع مرخصی‌های تأیید شده: {{ sumApproved }}</p>
+      <p>🏖️ مجموع مرخصی‌های استحقاقی تأیید شده: {{ sumApprovedEstehghaghi }}</p>
+      <p>❌ مجموع مرخصی‌های رد شده: {{ sumRejected }}</p>
+      <p>⏳ مجموع مرخصی‌های در دست بررسی: {{ sumPending }}</p>
+      <p>↩️ مجموع مرخصی‌های بازمانده از پایان ماه قبل: {{ carryOverFromPrevMonth }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- جدول -->
   <mat-card class="table-card">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ردیف</th>
         <td mat-cell *matCellDef="let e">{{ e.id }}</td>
@@ -74,7 +104,7 @@
 
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>تاریخ</th>
-        <td mat-cell *matCellDef="let e">{{ e.date }}</td>
+        <td mat-cell *matCellDef="let e">{{ convertToJalali(e.date) }}</td>
       </ng-container>
 
       <ng-container matColumnDef="fromHour">
@@ -121,6 +151,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
     </table>
   </mat-card>
 </div>
