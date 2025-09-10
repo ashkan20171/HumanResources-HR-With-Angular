@@ -1,47 +1,47 @@
 mat-card-content {
-  direction: rtl;
-  text-align: right;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 20px;
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+  font-size: 20px !important;
 }
 .leave-container {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
 }
 
 .form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  direction: rtl;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  direction: rtl !important;
 }
 
 mat-form-field {
-  width: 200px;
+  width: 200px !important;
 }
 
 .full-width {
-  flex: 1;
+  flex: 1 !important;
 }
 
 .filter-card {
-  display: flex;
-  justify-content: right;
-  justify-content: flex-start;
-  gap: 16px;
+  display: flex !important;
+  justify-content: right !important;
+  justify-content: flex-start !important;
+  gap: 16px !important;
 }
 
 .table-card {
-  overflow: auto;
-  direction: rtl;
+  overflow: auto !important;
+  direction: rtl !important;
 
 }
 th {
   font-family: Georgia, 'Times New Roman', Times, serif !important;
   text-align: center !important;
-  background-color: black;
+  background-color: black !important;
 }
 .mat-elevation-z8 {
   font-family: 'Courier New', Courier, monospace !important;
