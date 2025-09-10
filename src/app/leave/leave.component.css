@@ -65,3 +65,7 @@ th {
   font-size: 10px !important;
   
 }
+td{
+  text-align: right;
+  margin-right: 3px;
+}
