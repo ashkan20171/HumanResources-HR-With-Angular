@@ -1,61 +1,62 @@
 mat-card-content {
-  direction: rtl !important;
-  text-align: right !important;
-  font-family: Georgia, 'Times New Roman', Times, serif !important;
-  font-size: 20px !important;
+  direction: rtl;
+  text-align: right;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
 }
 .leave-container {
-  padding: 20px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 20px !important;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .form-row {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 20px !important;
-  direction: rtl !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  direction: rtl;
 }
 
 mat-form-field {
-  width: 200px !important;
+  width: 200px;
 }
 
 .full-width {
-  flex: 1 !important;
+  flex: 1;
 }
 
 .filter-card {
-  display: flex !important;
-  justify-content: right !important;
-  justify-content: flex-start !important;
-  gap: 16px !important;
+  display: flex;
+  justify-content: right;
+  justify-content: flex-start;
+  gap: 16px;
 }
 
 .table-card {
-  overflow: auto !important;
-  direction: rtl !important;
+  overflow: auto;
+  direction: rtl;
 
 }
 th {
   font-family: Georgia, 'Times New Roman', Times, serif !important;
   text-align: center !important;
-  background-color: black !important;
+  background-color: black;
 }
 .mat-elevation-z8 {
-  font-family: 'Courier New', Courier, monospace !important;
-  font-size: xx-small !important;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: medium;
+  text-align: center;
 }
 .btn-submit {
-  width: 90px !important;
-  height: 30% !important;
-  border-radius: 5px !important;
-  justify-content: left !important;
-  margin-right: 93% !important;
-  background-color: #5e35b1 !important;
-  color: white !important;
-  text-align: center !important;
+  width: 90px;
+  height: 30%;
+  border-radius: 5px;
+  justify-content: left;
+  margin-right: 93%;
+  background-color: #5e35b1;
+  color: white;
+  text-align: center;
 }
 .summary-card{
   font-family: Verdana, Geneva, Tahoma, sans-serif !important;
