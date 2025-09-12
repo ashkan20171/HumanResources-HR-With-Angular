@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   showPass = false;
 
   requireCaptcha = true;
-  siteKey: string = 'YOUR_RECAPTCHA_SITE_KEY';
+  siteKey: string = '6Lcqm5MrAAAAAM_MH12BxYp9wsGap5UcCFSb7sjP';
   captchaToken: string | null = null;
 
   constructor(private fb: FormBuilder, private router: Router) {}
