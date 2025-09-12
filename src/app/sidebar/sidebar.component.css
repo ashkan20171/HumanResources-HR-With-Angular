@@ -58,3 +58,20 @@ mat-list-item:hover {
   background: rgba(103, 173, 238, 0.16);
   box-shadow: inset 0 0 0 1px var(--ring);
 }
+
+/* Profile card at top */
+.sidebar-profile {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 14px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.sidebar-profile .avatar { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border:1px dashed rgba(255,255,255,0.18); display:grid; place-items:center; }
+.sidebar-profile .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.sidebar-profile .avatar.placeholder { background: rgba(255,255,255,0.06); }
+.sidebar-profile .name { font-weight: 900; }
+.sidebar-profile .role { font-size: 12px; color: var(--muted); }

@@ -11,7 +11,7 @@ app-header { grid-row: 1; }
 .main {
   grid-row: 2;
   display: grid;
-  grid-template-columns: 1fr 300px; /* content | sidebar (RTL places sidebar right) */
+  grid-template-columns: 1fr 320px; /* content | sidebar (RTL places sidebar right) */
   gap: 12px;
   min-height: 0;
 }

@@ -1,0 +1,4 @@
+.container { width: min(900px, 92vw); margin: 18px auto; }
+.card { background: var(--bg-card); border:1px solid rgba(255,255,255,0.06); border-radius: 18px; box-shadow: var(--shadow); padding: 6px; }
+.title { font-weight: 800; }
+.meta { color: var(--muted); font-size: 12px; }

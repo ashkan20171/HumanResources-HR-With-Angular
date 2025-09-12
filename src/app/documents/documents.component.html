@@ -1,0 +1,12 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let d of items">
+        <mat-icon matListIcon>description</mat-icon>
+        <div matLine class="title">{{ d.title }}</div>
+        <div matLine class="meta">نوع: {{ d.type }} • آخرین بروزرسانی: {{ d.updated }}</div>
+        <button mat-button>دانلود</button>
+      </a>
+    </mat-nav-list>
+  </mat-card>
+</div>

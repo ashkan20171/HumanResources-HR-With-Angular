@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="grid">
+    <mat-card class="card" *ngFor="let e of items">
+      <div class="avatar"> <mat-icon>person</mat-icon> </div>
+      <div class="name">{{ e.name }}</div>
+      <div class="meta">{{ e.role }} • {{ e.dept }}</div>
+      <div class="actions">
+        <button mat-button>پروفایل</button>
+        <button mat-button>پیام</button>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -18,6 +18,20 @@ export const routes: Routes = [
       import('./layout/layout.component').then(m => m.LayoutComponent),
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
+{
+  path: 'employee-directory',
+  loadComponent: () => import('./employee-directory/employee-directory.component').then(m => m.EmployeeDirectoryComponent),
+},
+{
+  path: 'documents',
+  loadComponent: () => import('./documents/documents.component').then(m => m.DocumentsComponent),
+},
+{
+  path: 'help',
+  loadComponent: () => import('./help/help.component').then(m => m.HelpComponent),
+},
+
       {
         path: 'dashboard',
         loadComponent: () =>

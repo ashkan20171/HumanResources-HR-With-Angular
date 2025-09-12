@@ -1,6 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" position="end" opened class="sidenav">
-    <div class="sidebar-header">
+  <mat-sidenav mode="side" position="start" opened class="sidenav">
+    <div class="sidebar-profile card">
+  <div class="avatar" *ngIf="avatar; else noavatar"><img [src]="avatar" alt="avatar"/></div>
+  <ng-template #noavatar><div class="avatar placeholder">🙂</div></ng-template>
+  <div class="name">{{ username || 'کاربر' }}</div>
+  <div class="role">پرتال منابع انسانی</div>
+</div>
+<div class="sidebar-header">
       <img src="assets/Arm1.png" class="sidebar-logo" alt="Logo" />
       <h3 class="sidebar-title">منوی سامانه</h3>
     </div>
@@ -54,6 +60,18 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
+          <mat-list-item [routerLink]="'/employee-directory'">
+            <img src="/assets/icons/users.svg" class="icon" />
+            فهرست کارکنان
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/documents'">
+            <img src="/assets/icons/folder.svg" class="icon" />
+            مستندات
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/help'">
+            <img src="/assets/icons/help.svg" class="icon" />
+            راهنما
+          </mat-list-item>
           <mat-list-item [routerLink]="'/work-report'">
             <img src="/assets/icons/chart.svg" class="icon" />
             گزارش ثبت‌ساعت
