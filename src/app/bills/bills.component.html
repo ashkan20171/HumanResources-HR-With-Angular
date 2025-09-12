@@ -81,3 +81,21 @@
     </table>
   </mat-card>
 </div>
+
+
+<mat-card class="payslip card">
+  <div class="payslip-header">
+    <div class="brand">HR Portal</div>
+    <div class="period">دوره: {{selectedYear}}/{{selectedMonth}}</div>
+  </div>
+  <div class="payslip-body">
+    <div class="row"><span>نام کارمند:</span> <b>{{ username || 'کاربر' }}</b></div>
+    <div class="row"><span>حقوق پایه:</span> 120,000,000</div>
+    <div class="row"><span>مزایا:</span> 15,000,000</div>
+    <div class="row"><span>کسورات:</span> 7,500,000</div>
+    <div class="row total"><span>خالص پرداختی:</span> <b>127,500,000</b></div>
+  </div>
+  <div class="payslip-actions">
+    <button mat-raised-button color="primary" (click)="printPayslip()"><mat-icon>print</mat-icon> چاپ فیش</button>
+  </div>
+</mat-card>

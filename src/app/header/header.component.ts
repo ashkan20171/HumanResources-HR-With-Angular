@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, Renderer2, Inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,14 +14,13 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit, OnDestroy {
   username: string | null = '';
   isLight = false;
-  notifCount = 3; // نمونه: بعداً از API پر می‌شود
+  notifCount = 3;
 
   timeStr = '';
   dateStr = '';
   private clockHandle: any = null;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
@@ -37,10 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.clockHandle) {
-      clearInterval(this.clockHandle);
-      this.clockHandle = null;
-    }
+    if (this.clockHandle) { clearInterval(this.clockHandle); this.clockHandle = null; }
   }
 
   toggleTheme(): void {
@@ -51,18 +46,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private applyTheme(): void {
     const root = this.document.documentElement;
-    if (this.isLight) {
-      this.renderer.addClass(root, 'light');
-    } else {
-      this.renderer.removeClass(root, 'light');
-    }
+    if (this.isLight) this.renderer.addClass(root, 'light');
+    else this.renderer.removeClass(root, 'light');
   }
 
   private startClock(): void {
     const lang = (localStorage.getItem('lang') || 'fa-IR');
     const timeFmt = new Intl.DateTimeFormat(lang, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
     const dateFmt = new Intl.DateTimeFormat(lang, { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit' });
-
     const tick = () => {
       const now = new Date();
       this.timeStr = timeFmt.format(now);
@@ -70,6 +61,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     };
     tick();
     this.clockHandle = setInterval(tick, 1000);
+  }
+
+  goNotifications(): void {
+    this.router.navigate(['/notifications']);
   }
 
   logout(): void {

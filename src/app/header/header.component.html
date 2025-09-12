@@ -24,7 +24,7 @@
     </button>
 
     <span class="user">خوش آمدید، {{ username || 'کاربر' }}</span>
-    <button mat-icon-button class="notif-btn" aria-label="اعلان‌ها"><mat-icon>notifications</mat-icon><span class="notif-badge" *ngIf="notifCount>0">{{ notifCount }}</span></button>
+    <button mat-icon-button class="notif-btn" (click)="goNotifications()" aria-label="اعلان‌ها"><mat-icon>notifications</mat-icon><span class="notif-badge" *ngIf="notifCount>0">{{ notifCount }}</span></button>
     <button mat-icon-button class="logout-btn" (click)="logout()" aria-label="خروج">
       <mat-icon>logout</mat-icon>
     </button>

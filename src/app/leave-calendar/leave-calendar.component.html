@@ -1,0 +1,42 @@
+<div class="container">
+  <mat-card class="toolbar card">
+    <div class="left">
+      <button mat-icon-button (click)="prevMonth()" aria-label="ماه قبل"><mat-icon>chevron_right</mat-icon></button>
+      <div class="month">{{ monthName }}</div>
+      <button mat-icon-button (click)="nextMonth()" aria-label="ماه بعد"><mat-icon>chevron_left</mat-icon></button>
+    </div>
+    <div class="right">
+      <mat-select [(ngModel)]="filter">
+        <mat-option value="all">همه انواع</mat-option>
+        <mat-option value="paid">استحقاقی</mat-option>
+        <mat-option value="sick">استعلاجی</mat-option>
+        <mat-option value="mission">ماموریت</mat-option>
+        <mat-option value="unpaid">بدون حقوق</mat-option>
+      </mat-select>
+    </div>
+  </mat-card>
+
+  <mat-card class="legend card">
+    <div class="item"><span class="dot paid"></span>استحقاقی</div>
+    <div class="item"><span class="dot sick"></span>استعلاجی</div>
+    <div class="item"><span class="dot mission"></span>ماموریت</div>
+    <div class="item"><span class="dot unpaid"></span>بدون حقوق</div>
+  </mat-card>
+
+  <mat-card class="calendar card">
+    <div class="grid header">
+      <div>شنبه</div><div>یکشنبه</div><div>دوشنبه</div><div>سه‌شنبه</div><div>چهارشنبه</div><div>پنجشنبه</div><div>جمعه</div>
+    </div>
+    <div class="grid">
+      <ng-container *ngFor="let week of weeks">
+        <div *ngFor="let c of week" class="cell" [class.out]="!c.inMonth" [class.today]="c.date.toDateString() === today.toDateString()">
+          <div class="top">
+            <span class="d">{{ c.date.getDate() }}</span>
+            <span class="badge" [ngClass]="c.type" *ngIf="c.type">{{ typeLabel(c.type) }}</span>
+          </div>
+          <div class="note" *ngIf="c.note">{{ c.note }}</div>
+        </div>
+      </ng-container>
+    </div>
+  </mat-card>
+</div>

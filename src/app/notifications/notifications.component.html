@@ -1,0 +1,26 @@
+<div class="container">
+  <mat-card class="toolbar card">
+    <div class="title">اعلان‌ها</div>
+    <div class="actions">
+      <button mat-button (click)="markAllRead()"><mat-icon>done_all</mat-icon> خوانده شد</button>
+      <button mat-button (click)="clearAll()"><mat-icon>clear_all</mat-icon> پاک کردن همه</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="list card" *ngIf="items.length; else empty">
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let n of items" [class.unread]="n.unread">
+        <mat-icon matListIcon [ngClass]="n.type">
+          {{ n.type === 'success' ? 'check_circle' : (n.type === 'warning' ? 'warning' : 'notifications') }}
+        </mat-icon>
+        <div matLine class="line1">{{ n.title }}</div>
+        <div matLine class="line2">{{ n.body }}</div>
+        <div class="meta">{{ n.time }}</div>
+      </a>
+    </mat-nav-list>
+  </mat-card>
+
+  <ng-template #empty>
+    <mat-card class="empty card">اعلان جدیدی نداری ✨</mat-card>
+  </ng-template>
+</div>

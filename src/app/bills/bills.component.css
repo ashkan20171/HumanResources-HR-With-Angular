@@ -55,3 +55,17 @@ th, td { white-space: nowrap; }
   .month-field { width: 100%; min-width: 0; }
   .actions { width: 100%; justify-content: flex-start; }
 }
+
+
+.payslip { margin-top: 16px; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; box-shadow: var(--shadow); }
+.payslip-header { display:flex; justify-content:space-between; align-items:center; padding: 12px 16px; border-bottom: 1px dashed rgba(255,255,255,0.14); }
+.payslip-body { padding: 16px; display:grid; gap:8px; }
+.payslip-body .row { display:flex; justify-content:space-between; }
+.payslip-body .row.total { padding-top:8px; border-top:1px dashed rgba(255,255,255,0.14); font-size: 18px; }
+.payslip-actions { padding: 12px 16px; display:flex; justify-content:flex-end; }
+
+@media print {
+  .toolbar, .filters, .actions, app-header, app-sidebar { display: none !important; }
+  .payslip { box-shadow: none !important; border: none !important; }
+  body { background: white !important; color: black !important; }
+}

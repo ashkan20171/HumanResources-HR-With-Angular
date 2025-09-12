@@ -6,6 +6,21 @@
     </div>
 
     <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="/assets/icons/bell.svg" class="icon" />
+            اعلان‌ها
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item [routerLink]="'/notifications'">
+            <img src="/assets/icons/bell.svg" class="icon" />
+            مرکز اعلان‌ها
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    
       <!-- بخش حقوق -->
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -39,6 +54,14 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
+          <mat-list-item [routerLink]="'/work-report'">
+            <img src="/assets/icons/chart.svg" class="icon" />
+            گزارش ثبت‌ساعت
+          </mat-list-item>
+          <mat-list-item [routerLink]="'/leave-calendar'">
+            <img src="/assets/icons/calendar.svg" class="icon" />
+            تقویم مرخصی
+          </mat-list-item>
           <mat-list-item [routerLink]="'/bills'">
             <img src="/assets/icons/bill.svg" class="icon" />
             فیش حقوقی
@@ -46,6 +69,14 @@
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
+    <div style="margin-top:auto;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.1)">
+      <mat-list>
+        <mat-list-item [routerLink]="'/settings'">
+          <img src="/assets/icons/gear.svg" class="icon" />
+          تنظیمات
+        </mat-list-item>
+      </mat-list>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content class="content">
     <ng-content></ng-content>
