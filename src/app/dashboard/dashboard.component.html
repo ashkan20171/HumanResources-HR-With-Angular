@@ -1,22 +1,28 @@
 <div class="dashboard-container">
 
-  <!-- لوگو و پیام -->
-  <div class="logo-section">
-    <img src="assets/Arm2.png" alt="HR Logo" class="main-logo" />
-    <h3 class="company-text">سامانه مدیریت منابع انسانی</h3>
-  </div>
+  <section class="hero">
+    <img src="assets/Arm2.png" alt="HR Logo" class="logo" />
+    <h3>سامانه مدیریت منابع انسانی</h3>
+    <div class="subtitle">سلام {{ username }} عزیز، خوش اومدی!</div>
+  </section>
 
-  <!-- پیام خوش‌آمد -->
-  <div class="welcome-message">
-    👋 سلام <b>{{ username }}</b> عزیز، خوش اومدی!
-  </div>
-
-  <!-- کارت‌های آمار -->
-  <div class="stats-cards">
-    <div class="stat-card">📆 روزهای ثبت‌شده: <b>{{ totalDays }}</b></div>
-    <div class="stat-card">⏰ ساعت موردنیاز: <b>{{ requiredHours }}</b></div>
-    <div class="stat-card">✅ ساعت ثبت‌شده: <b>{{ totalWorkedHours }}</b></div>
-    <div class="stat-card">📊 میانگین روزانه: <b>{{ avgDailyHours }}</b> ساعت</div>
-  </div>
+  <section class="kpis">
+    <div class="kpi">
+      <div class="label">📆 روزهای ثبت‌شده</div>
+      <div class="value">{{ totalDays }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">⏰ ساعت موردنیاز</div>
+      <div class="value">{{ requiredHours }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">✅ ساعت ثبت‌شده</div>
+      <div class="value">{{ totalWorkedHours }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">📊 میانگین روزانه (ساعت)</div>
+      <div class="value">{{ avgDailyHours }}</div>
+    </div>
+  </section>
 
 </div>

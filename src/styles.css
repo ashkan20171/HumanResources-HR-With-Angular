@@ -1,4 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+/* === Global Theme & Resets === */
+:root {
+  --bg: #0b1220;
+  --bg-soft: #0f1629;
+  --bg-card: #121b33;
+  --accent: #67adee;
+  --accent-2: #7dd3fc;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --ring: rgba(103, 173, 238, 0.35);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --shadow: 0 10px 30px rgba(0,0,0,0.25);
+  --radius: 16px;
+}
 
+:root.light {
+  --bg: #f7faff;
+  --bg-soft: #f1f5f9;
+  --bg-card: #ffffff;
+  --accent: #0ea5e9;
+  --accent-2: #22c55e;
+  --text: #0f172a;
+  --muted: #475569;
+  --ring: rgba(14,165,233,0.25);
+  --shadow: 0 10px 30px rgba(2,8,23,0.08);
+}
+
+* { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Vazirmatn, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(60rem 60rem at 120% -10%, rgba(103,173,238,0.25), transparent 60%),
+    radial-gradient(50rem 50rem at -10% 120%, rgba(34,197,94,0.18), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  transition: background 300ms ease, color 300ms ease;
+  direction: rtl;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Utility */
+.container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  backdrop-filter: saturate(150%) blur(6px);
+}
+
+.glow {
+  box-shadow: 0 0 0 2px var(--ring), 0 0 30px -10px var(--accent);
+}
+
+/* Form improvements (global) */
+input[matinput], input.mat-input-element, input, select, textarea {
+  background: var(--bg-soft) !important;
+  color: var(--text) !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  border-radius: 999px !important;
+  padding-inline: 22px !important;
+  box-shadow: var(--shadow) !important;
+}
+
+.mdc-text-field--filled {
+  background: var(--bg-soft) !important;
+}
+
+/* Scrollbar */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track { background: transparent; }

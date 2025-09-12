@@ -1,19 +1,32 @@
-<mat-toolbar color="primary" class="toolbar-custom">
-  <!-- لوگو در سمت راست -->
+<mat-toolbar class="toolbar-custom">
+  <!-- Right: Logo -->
   <div class="header-section right">
     <img src="assets/Arm1.png" alt="logo" class="logo-glow" />
+    <span class="brand">پرتال منابع انسانی</span>
   </div>
 
-  <!-- نام کاربر و دکمه خروج در وسط -->
+  <!-- Center: Page title or search -->
   <div class="header-section center">
-    <span class="user">خوش آمدید: {{ username }}</span>
-    <button mat-icon-button class="logout-btn" (click)="logout()">
+  <div class="clock card">
+    <div class="time">{{ timeStr }}</div>
+    <div class="date">{{ dateStr }}</div>
+  </div>
+    <div class="search">
+      <mat-icon>search</mat-icon>
+      <input placeholder="جستجو در پرتال..." />
+    </div>
+  </div>
+
+  <!-- Left: User + actions -->
+  <div class="header-section left">
+    <button mat-icon-button class="mode-btn" (click)="toggleTheme()" [attr.aria-label]="isLight ? 'روشن' : 'تاریک'">
+      <mat-icon>{{ isLight ? 'dark_mode' : 'light_mode' }}</mat-icon>
+    </button>
+
+    <span class="user">خوش آمدید، {{ username || 'کاربر' }}</span>
+    <button mat-icon-button class="notif-btn" aria-label="اعلان‌ها"><mat-icon>notifications</mat-icon><span class="notif-badge" *ngIf="notifCount>0">{{ notifCount }}</span></button>
+    <button mat-icon-button class="logout-btn" (click)="logout()" aria-label="خروج">
       <mat-icon>logout</mat-icon>
     </button>
-  </div>
-
-  <!-- عنوان سیستم در سمت چپ -->
-  <div class="header-section left">
-    <span class="title">سامانه ثبت ساعت</span>
   </div>
 </mat-toolbar>

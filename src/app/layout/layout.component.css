@@ -1,41 +1,30 @@
-/* ساختار کلی صفحه */
 .layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  /* هدر */
-  app-header {
-    height: 60px;
-    background-color: #f4f4f4;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* بخش اصلی (محتوا + سایدبار) */
-  .main {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
-  
-  /* محتوای اصلی */
-  .content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    background-color: #f9f9f9;
-  }
-  
-  /* سایدبار */
-  app-sidebar {
-    width: 250px;
-    background-color: #333;
-    color: #fff;
-    
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* سایه به سمت چپ */
-  }
-  
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  gap: 12px;
+  padding: 12px;
+}
+
+app-header { grid-row: 1; }
+
+.main {
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1fr 300px; /* content | sidebar (RTL places sidebar right) */
+  gap: 12px;
+  min-height: 0;
+}
+
+.content {
+  min-height: 0;
+  padding: 16px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+app-sidebar {
+  height: 100%;
+}

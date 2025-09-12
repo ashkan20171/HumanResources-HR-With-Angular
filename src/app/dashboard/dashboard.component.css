@@ -1,52 +1,43 @@
 .dashboard-container {
-  padding: 50px;
-  background: linear-gradient(to right, #f8f9fa, #e0e0ff);
-  border-radius: 15px;
-  font-family: 'IRANSans', sans-serif;
-  
+  padding: 24px;
 }
 
-.logo-section {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.main-logo {
-  width: 520px;
-  margin-bottom: 10px;
-}
-
-.company-text {
-  font-size: 18px;
-  font-weight: bold;
-  color: #5d47ff;
-}
-
-.welcome-message {
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.stats-cards {
+.hero {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
-}
-
-.stat-card {
-  background-color: #ffffff;
-  box-shadow: 0 4px 15px rgba(129, 98, 255, 0.2);
-  padding: 20px;
-  border-radius: 12px;
-  font-size: 18px;
+  place-items: center;
+  background: radial-gradient(60rem 60rem at 120% -10%, rgba(103,173,238,0.25), transparent 60%),
+              radial-gradient(50rem 50rem at -10% 120%, rgba(34,197,94,0.18), transparent 60%),
+              var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 32px;
+  margin-bottom: 18px;
   text-align: center;
-  color: #444;
-  transition: all 0.3s ease-in-out;
 }
+.hero .logo { width: clamp(120px, 32vw, 360px); border-radius: 20px; box-shadow: var(--shadow); }
+.hero h3 { margin: 16px 0 6px; color: var(--text); }
+.hero .subtitle { color: var(--muted); }
 
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(129, 98, 255, 0.3);
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 14px;
 }
+.kpi {
+  background: #fff;
+  color: #0f172a;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(2,8,23,0.08);
+  border: 1px solid rgba(2,8,23,0.06);
+  display: grid;
+  gap: 8px;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.kpi:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(2,8,23,0.12); }
+.kpi .label { font-size: 13px; color: #334155; display: flex; align-items: center; gap: 8px; }
+.kpi .value { font-weight: 900; font-size: 24px; letter-spacing: 0.3px; }
+
+@media (max-width: 1024px) { .kpis { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 640px)  { .kpis { grid-template-columns: 1fr; } }
