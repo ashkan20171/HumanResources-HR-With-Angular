@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 // Angular Material
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,6 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     RouterLink,
+    RouterOutlet,           // ← حتماً این را داشته باش
+    MatSidenavModule,
+    MatListModule,
+    MatExpansionModule,
+    MatIconModule,
     MatSidenavModule, MatListModule, MatExpansionModule, MatIconModule
   ],
   templateUrl: './sidebar.component.html',

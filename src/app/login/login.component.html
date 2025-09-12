@@ -1,31 +1,51 @@
-  <div class="login-container">
-    <mat-card class="login-card">
-      <div class="logo">
-        <img src="assets/Arm1.png" alt="HR logo">
-      </div>
-        <h2 class="title">ورود به پورتال</h2>
+<div class="login-container">
+  <mat-card class="login-card">
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="w-100">
-      <mat-label>نام کاربری</mat-label>
-      <input matInput formControlName="username" placeholder="username">
-      <mat-icon matSuffix>person</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="w-100">
-      <mat-label>رمز عبور</mat-label>
-      <input matInput type="password" formControlName="password" placeholder="••••••">
-      <mat-icon matSuffix>lock</mat-icon>
-    </mat-form-field>
-
-    <div class="captcha-wrap">
-      <re-captcha [siteKey]="siteKey" (resolved)="onCaptchaResolved($event)"></re-captcha>
+    <!-- برند/لوگو -->
+    <div class="brand">
+      <img src="assets/Arm1.png" alt="HR" class="brand__logo" />
+      <h1 class="brand__title">ورود به پورتال</h1>
+      <p class="brand__subtitle">لطفاً مشخصات خود را وارد کنید</p>
     </div>
 
-    <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+    <!-- فرم -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
 
-    <button mat-raised-button color="primary" class="w-100" [disabled]="loading">
-      ورود
-    </button>
-  </form>
-</mat-card>
+      <mat-form-field appearance="outline" class="field">
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput formControlName="username" dir="ltr" placeholder="username" />
+        <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          نام کاربری الزامی است
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-icon matPrefix>lock</mat-icon>
+       
+        <input matInput [type]="showPass ? 'text' : 'password'" formControlName="password" placeholder="••••••" />
+        <button type="button" mat-icon-button matSuffix (click)="showPass = !showPass" [attr.aria-label]="showPass ? 'مخفی کردن' : 'نمایش'">
+          <mat-icon>{{ showPass ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          رمز عبور الزامی است
+        </mat-error>
+      </mat-form-field>
+
+      <!-- کپچا -->
+      <div class="captcha">
+        <re-captcha [siteKey]="siteKey" (resolved)="onCaptchaResolved($event)"></re-captcha>
+      </div>
+
+      <!-- خطا -->
+      <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+      <button mat-flat-button color="primary" class="submit" [disabled]="loading || loginForm.invalid">
+        ورود
+      </button>
+    </form>
+
+    <div class="foot-note">
+      <span>مشکل ورود دارید؟ با واحد منابع انسانی تماس بگیرید.</span>
+    </div>
+  </mat-card>
+</div>

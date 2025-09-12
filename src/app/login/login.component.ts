@@ -1,16 +1,12 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import { RecaptchaModule } from 'ng-recaptcha';
 
 @Component({
@@ -29,8 +25,9 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loading = false;
   errorMsg = '';
+  showPass = false;                           // ← برای دکمه نمایش/مخفی رمز
 
-  siteKey: string = '6Lcqm5MrAAAAAM_MH12BxYp9wsGap5UcCFSb7sjP'; // ← Site Key واقعی‌ت را قرار بده
+  siteKey: string = '6Lcqm5MrAAAAAM_MH12BxYp9wsGap5UcCFSb7sjP'; // ← سرتیفیکیت خودت
   captchaToken: string | null = null;
 
   constructor(private fb: FormBuilder, private router: Router) {}
@@ -44,14 +41,11 @@ export class LoginComponent implements OnInit {
     const u = localStorage.getItem('user');
     if (u) {
       const savedRole = localStorage.getItem('role') || 'user';
-      if (savedRole === 'user') this.router.navigate(['/register-hourse']);
-      else this.router.navigate(['/dashboard']);
+      this.router.navigate([savedRole === 'user' ? '/register-hourse' : '/dashboard']);
     }
   }
 
-  onCaptchaResolved(token: string | null) {
-    this.captchaToken = token;
-  }
+  onCaptchaResolved(token: string | null) { this.captchaToken = token; }
 
   private resolveRoleByUsername(username: string): string {
     const u = username.toLowerCase();
@@ -63,37 +57,19 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.errorMsg = '';
-    this.loading = true;
+    if (this.loginForm.invalid) { this.loginForm.markAllAsTouched(); return; }
+    if (!this.captchaToken) { this.errorMsg = 'لطفاً کپچا را تکمیل کنید.'; return; }
 
+    this.loading = true;
     setTimeout(() => {
       this.loading = false;
-
-      if (this.loginForm.invalid) {
-        this.errorMsg = 'نام کاربری و رمز عبور را وارد کنید';
-        return;
-      }
-
-      if (!this.captchaToken) {
-        this.errorMsg = 'لطفاً کپچا را تکمیل کنید.';
-        return;
-      }
-
       const { username, password } = this.loginForm.value;
-      if (!username || !password) {
-        this.errorMsg = 'نام کاربری و رمز عبور الزامی است';
-        return;
-      }
+      if (!username || !password) { this.errorMsg = 'نام کاربری و رمز عبور الزامی است'; return; }
 
       const role = this.resolveRoleByUsername(String(username));
-
       localStorage.setItem('user', String(username));
       localStorage.setItem('role', role);
-
-      if (role === 'user') {
-        this.router.navigate(['/register-hourse']);
-      } else {
-        this.router.navigate(['/dashboard']);
-      }
-    }, 250);
+      this.router.navigate([role === 'user' ? '/register-hourse' : '/dashboard']);
+    }, 220);
   }
 }
