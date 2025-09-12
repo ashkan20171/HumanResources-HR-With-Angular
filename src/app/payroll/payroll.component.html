@@ -1,0 +1,14 @@
+<div class="container">
+  <mat-card class="card">
+    <table mat-table [dataSource]="rows">
+      <ng-container matColumnDef="user"><th mat-header-cell *matHeaderCellDef>کارمند</th><td mat-cell *matCellDef="let e">{{ e.user }}</td></ng-container>
+      <ng-container matColumnDef="month"><th mat-header-cell *matHeaderCellDef>ماه</th><td mat-cell *matCellDef="let e">{{ e.month }}</td></ng-container>
+      <ng-container matColumnDef="year"><th mat-header-cell *matHeaderCellDef>سال</th><td mat-cell *matCellDef="let e">{{ e.year }}</td></ng-container>
+      <ng-container matColumnDef="gross"><th mat-header-cell *matHeaderCellDef>ناخالص</th><td mat-cell *matCellDef="let e">{{ e.gross | number }}</td></ng-container>
+      <ng-container matColumnDef="tax"><th mat-header-cell *matHeaderCellDef>مالیات</th><td mat-cell *matCellDef="let e">{{ e.tax | number }}</td></ng-container>
+      <ng-container matColumnDef="net"><th mat-header-cell *matHeaderCellDef>خالص</th><td mat-cell *matCellDef="let e">{{ e.net | number }}</td></ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayed"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayed;"></tr>
+    </table>
+  </mat-card>
+</div>

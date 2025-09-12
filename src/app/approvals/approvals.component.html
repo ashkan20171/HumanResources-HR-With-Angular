@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="grid">
+    <mat-card class="card" *ngFor="let r of items" [class.approved]="r.status==='approved'" [class.rejected]="r.status==='rejected'">
+      <div class="title">
+        <mat-icon>{{ r.type === 'leave' ? 'event' : 'location_city' }}</mat-icon>
+        {{ r.user }}
+      </div>
+      <div class="meta">
+        {{ r.type === 'leave' ? ('مرخصی • ' + r.days + ' روز') : ('ماموریت • ' + (r.city||'')) }} • {{ r.date }}
+      </div>
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="approve(r)"><mat-icon>check</mat-icon> تایید</button>
+        <button mat-raised-button color="warn" (click)="reject(r)"><mat-icon>close</mat-icon> رد</button>
+      </div>
+    </mat-card>
+  </div>
+</div>

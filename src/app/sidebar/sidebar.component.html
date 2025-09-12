@@ -20,7 +20,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
-          <mat-list-item [routerLink]="'/notifications'">
+          <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/notifications'">
             <img src="/assets/icons/bell.svg" class="icon" />
             مرکز اعلان‌ها
           </mat-list-item>
@@ -36,15 +36,15 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
-          <mat-list-item [routerLink]="'/register-hourse'">
+          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/register-hourse'">
             <img src="/assets/icons/clock.svg" class="icon" />
             ثبت ساعت
           </mat-list-item>
-          <mat-list-item [routerLink]="'/leave'">
+          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/leave'">
             <img src="/assets/icons/leave.svg" class="icon" />
             درخواست مرخصی
           </mat-list-item>
-          <mat-list-item [routerLink]="'/mission'">
+          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/mission'">
             <img src="/assets/icons/mission.svg" class="icon" />
             مأموریت
           </mat-list-item>
@@ -60,27 +60,27 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
-          <mat-list-item [routerLink]="'/employee-directory'">
+          <mat-list-item *ngIf="hasRole(['manager','hr'])" [routerLink]="'/employee-directory'">
             <img src="/assets/icons/users.svg" class="icon" />
             فهرست کارکنان
           </mat-list-item>
-          <mat-list-item [routerLink]="'/documents'">
+          <mat-list-item *ngIf="hasRole(['manager','hr'])" [routerLink]="'/documents'">
             <img src="/assets/icons/folder.svg" class="icon" />
             مستندات
           </mat-list-item>
-          <mat-list-item [routerLink]="'/help'">
+          <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/help'">
             <img src="/assets/icons/help.svg" class="icon" />
             راهنما
           </mat-list-item>
-          <mat-list-item [routerLink]="'/work-report'">
+          <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/work-report'">
             <img src="/assets/icons/chart.svg" class="icon" />
             گزارش ثبت‌ساعت
           </mat-list-item>
-          <mat-list-item [routerLink]="'/leave-calendar'">
+          <mat-list-item *ngIf="hasRole(['manager','hr'])" [routerLink]="'/leave-calendar'">
             <img src="/assets/icons/calendar.svg" class="icon" />
             تقویم مرخصی
           </mat-list-item>
-          <mat-list-item [routerLink]="'/bills'">
+          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/bills'">
             <img src="/assets/icons/bill.svg" class="icon" />
             فیش حقوقی
           </mat-list-item>
@@ -89,7 +89,7 @@
     </mat-accordion>
     <div style="margin-top:auto;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.1)">
       <mat-list>
-        <mat-list-item [routerLink]="'/settings'">
+        <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/settings'">
           <img src="/assets/icons/gear.svg" class="icon" />
           تنظیمات
         </mat-list-item>

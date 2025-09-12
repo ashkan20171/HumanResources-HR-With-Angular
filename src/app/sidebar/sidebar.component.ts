@@ -1,27 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; 
+import { RouterLink } from '@angular/router';
+
+// Angular Material
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule,
-    MatSidenavModule,
-    MatExpansionModule,
-    MatListModule,
-  RouterModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatSidenavModule, MatListModule, MatExpansionModule, MatIconModule
+  ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit {
-  
-username: string | null = '';
-avatar: string | null = null;
-ngOnInit(): void {
-  this.username = localStorage.getItem('user');
-  this.avatar = localStorage.getItem('avatar');
-}
+  username: string | null = '';
+  avatar: string | null = null;
+  currentRole: string = localStorage.getItem('role') || 'user';
 
+  ngOnInit(): void {
+    this.username = localStorage.getItem('user');
+    this.avatar = localStorage.getItem('avatar');
+    this.currentRole = localStorage.getItem('role') || 'user';
+  }
 
+  hasRole(roles: string[]): boolean {
+    const r = (this.currentRole || 'user').toLowerCase();
+    return roles.map(x => x.toLowerCase()).includes(r);
+  }
 }
