@@ -1,18 +1,18 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Route, UrlSegment, Router } from '@angular/router';
 
-export const RoleGuard: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+export const RoleGuard: CanMatchFn = (route: Route, _segments: UrlSegment[]) => {
   const router = inject(Router);
   const allowed: string[] = (route.data?.['roles'] as string[]) || [];
-  if (allowed.length === 0) return true; // no role restriction
+  if (!allowed.length) return true; // بدون محدودیت نقش
 
   const role = (localStorage.getItem('role') || 'user').toLowerCase();
+  const ok = allowed.map(r => r.toLowerCase()).includes(role);
 
-  if (allowed.map(r => r.toLowerCase()).includes(role)) {
-    return true;
+  if (!ok) {
+    // مسیردهی امن در صورت عدم دسترسی
+    if (role === 'user') router.navigate(['/register-hourse']);
+    else router.navigate(['/dashboard']);
   }
-
-  // If role doesn't match, redirect to dashboard
-  router.navigate(['/dashboard']);
-  return false;
+  return ok;
 };

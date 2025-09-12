@@ -1,15 +1,17 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-// Angular Material
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-login',
@@ -18,35 +20,45 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     FormsModule, ReactiveFormsModule,
     MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+    RecaptchaModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  // اگر app-recaptcha را در HTML دارید و هنوز import نکرده‌اید، این schema مانع خطا می‌شود.
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class LoginComponent implements OnInit {
-  role: string = localStorage.getItem('role') || 'user';
-
-  loginForm!: FormGroup;     // اینجا فقط تعریف می‌کنیم
+  loginForm!: FormGroup;
   loading = false;
   errorMsg = '';
+
+  siteKey: string = '6Lcqm5MrAAAAAM_MH12BxYp9wsGap5UcCFSb7sjP'; // ← Site Key واقعی‌ت را قرار بده
+  captchaToken: string | null = null;
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
-    // ساخت فرم اینجا (fb آماده است)
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
 
-    // اگر کاربر قبلاً لاگین بوده:
     const u = localStorage.getItem('user');
     if (u) {
       const savedRole = localStorage.getItem('role') || 'user';
       if (savedRole === 'user') this.router.navigate(['/register-hourse']);
       else this.router.navigate(['/dashboard']);
     }
+  }
+
+  onCaptchaResolved(token: string | null) {
+    this.captchaToken = token;
+  }
+
+  private resolveRoleByUsername(username: string): string {
+    const u = username.toLowerCase();
+    if (u === 'admin') return 'manager';
+    if (u === 'hruser') return 'hr';
+    if (u === 'acc' || u === 'accounting') return 'accounting';
+    return 'user';
   }
 
   onSubmit(): void {
@@ -61,22 +73,27 @@ export class LoginComponent implements OnInit {
         return;
       }
 
+      if (!this.captchaToken) {
+        this.errorMsg = 'لطفاً کپچا را تکمیل کنید.';
+        return;
+      }
+
       const { username, password } = this.loginForm.value;
       if (!username || !password) {
         this.errorMsg = 'نام کاربری و رمز عبور الزامی است';
         return;
       }
 
-      // ذخیره کاربر + نقش
-      localStorage.setItem('user', String(username));
-      localStorage.setItem('role', this.role);
+      const role = this.resolveRoleByUsername(String(username));
 
-      // هدایت بر اساس نقش
-      if (this.role === 'user') {
+      localStorage.setItem('user', String(username));
+      localStorage.setItem('role', role);
+
+      if (role === 'user') {
         this.router.navigate(['/register-hourse']);
       } else {
         this.router.navigate(['/dashboard']);
       }
-    }, 300);
+    }, 250);
   }
 }

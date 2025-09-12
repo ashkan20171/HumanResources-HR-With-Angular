@@ -3,23 +3,29 @@
       <div class="logo">
         <img src="assets/Arm1.png" alt="HR logo">
       </div>
-      <h3>ورود به سیستم</h3>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">       
-            <div class="input-group">
-  <input matInput formControlName="username" placeholder="نام کاربری" />
-  <mat-icon class="input-icon">person</mat-icon>
-</div>
+        <h2 class="title">ورود به پورتال</h2>
 
-<div class="input-group">
-  <input matInput type="password" formControlName="password" placeholder="رمز عبور" />
-  <mat-icon class="input-icon">lock</mat-icon>
-</div>
-          
-          <br>
-          <app-recaptcha class="re-captcha1" ></app-recaptcha>
-          <button mat-raised-button color="primary" type="submit" class="submit-button">
-          ورود
-          </button>
-      </form>
-    </mat-card>
-  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>نام کاربری</mat-label>
+      <input matInput formControlName="username" placeholder="username">
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>رمز عبور</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="••••••">
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+
+    <div class="captcha-wrap">
+      <re-captcha [siteKey]="siteKey" (resolved)="onCaptchaResolved($event)"></re-captcha>
+    </div>
+
+    <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+    <button mat-raised-button color="primary" class="w-100" [disabled]="loading">
+      ورود
+    </button>
+  </form>
+</mat-card>

@@ -1,103 +1,75 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="shell" dir="rtl">
   <mat-sidenav mode="side" position="start" opened class="sidenav">
+
     <div class="sidebar-profile card">
-  <div class="avatar" *ngIf="avatar; else noavatar"><img [src]="avatar" alt="avatar"/></div>
-  <ng-template #noavatar><div class="avatar placeholder">🙂</div></ng-template>
-  <div class="name">{{ username || 'کاربر' }}</div>
-  <div class="role">پرتال منابع انسانی</div>
-</div>
-<div class="sidebar-header">
-      <img src="assets/Arm1.png" class="sidebar-logo" alt="Logo" />
-      <h3 class="sidebar-title">منوی سامانه</h3>
+      <div class="avatar" *ngIf="avatar; else noavatar"><img [src]="avatar" alt="avatar"/></div>
+      <ng-template #noavatar><div class="avatar placeholder">🙂</div></ng-template>
+      <div class="name">{{ username || 'کاربر' }}</div>
+      <div class="role">{{ (currentRole || 'user') | uppercase }}</div>
     </div>
 
-    <mat-accordion>
-      <mat-expansion-panel>
+    <mat-accordion class="nav-accordion" multi>
+
+      <!-- کاربر معمولی -->
+      <mat-expansion-panel *ngIf="hasRole(['user'])" expanded>
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            <img src="/assets/icons/bell.svg" class="icon" />
-            اعلان‌ها
-          </mat-panel-title>
+          <mat-panel-title>منوی کاربر</mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-list>
-          <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/notifications'">
-            <img src="/assets/icons/bell.svg" class="icon" />
-            مرکز اعلان‌ها
-          </mat-list-item>
-        </mat-list>
-      </mat-expansion-panel>
-    
-      <!-- بخش حقوق -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <img src="/assets/icons/money.svg" class="icon" />
-            حقوق و دستمزد
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-list>
-          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/register-hourse'">
-            <img src="/assets/icons/clock.svg" class="icon" />
-            ثبت ساعت
-          </mat-list-item>
-          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/leave'">
-            <img src="/assets/icons/leave.svg" class="icon" />
-            درخواست مرخصی
-          </mat-list-item>
-          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/mission'">
-            <img src="/assets/icons/mission.svg" class="icon" />
-            مأموریت
-          </mat-list-item>
-        </mat-list>
+        <mat-nav-list>
+          <mat-list-item [routerLink]="'/register-hourse'"><mat-icon matListIcon>schedule</mat-icon>ثبت ساعت</mat-list-item>
+          <mat-list-item [routerLink]="'/leave'"><mat-icon matListIcon>event_available</mat-icon>درخواست مرخصی</mat-list-item>
+          <mat-list-item [routerLink]="'/mission'"><mat-icon matListIcon>flight_takeoff</mat-icon>ماموریت خارج از شهر</mat-list-item>
+          <mat-list-item [routerLink]="'/bills'"><mat-icon matListIcon>receipt_long</mat-icon>فیش حقوقی</mat-list-item>
+        </mat-nav-list>
       </mat-expansion-panel>
 
-      <!-- بخش گزارش -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <img src="/assets/icons/reports.svg" class="icon" />
-            گزارشات
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-list>
-          <mat-list-item *ngIf="hasRole(['manager','hr'])" [routerLink]="'/employee-directory'">
-            <img src="/assets/icons/users.svg" class="icon" />
-            فهرست کارکنان
-          </mat-list-item>
-          <mat-list-item *ngIf="hasRole(['manager','hr'])" [routerLink]="'/documents'">
-            <img src="/assets/icons/folder.svg" class="icon" />
-            مستندات
-          </mat-list-item>
-          <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/help'">
-            <img src="/assets/icons/help.svg" class="icon" />
-            راهنما
-          </mat-list-item>
-          <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/work-report'">
-            <img src="/assets/icons/chart.svg" class="icon" />
-            گزارش ثبت‌ساعت
-          </mat-list-item>
-          <mat-list-item *ngIf="hasRole(['manager','hr'])" [routerLink]="'/leave-calendar'">
-            <img src="/assets/icons/calendar.svg" class="icon" />
-            تقویم مرخصی
-          </mat-list-item>
-          <mat-list-item *ngIf="hasRole(['user'])" [routerLink]="'/bills'">
-            <img src="/assets/icons/bill.svg" class="icon" />
-            فیش حقوقی
-          </mat-list-item>
-        </mat-list>
+      <!-- مدیر -->
+      <mat-expansion-panel *ngIf="hasRole(['manager'])" expanded>
+        <mat-expansion-panel-header><mat-panel-title>مدیریت</mat-panel-title></mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item [routerLink]="'/dashboard'"><mat-icon matListIcon>dashboard</mat-icon>داشبورد</mat-list-item>
+          <mat-list-item [routerLink]="'/approvals'"><mat-icon matListIcon>how_to_reg</mat-icon>تأیید/رد درخواست‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'/leave-calendar'"><mat-icon matListIcon>calendar_month</mat-icon>تقویم مرخصی</mat-list-item>
+          <mat-list-item [routerLink]="'/work-report'"><mat-icon matListIcon>bar_chart</mat-icon>گزارش ثبت‌ساعت</mat-list-item>
+          <mat-list-item [routerLink]="'/bills'"><mat-icon matListIcon>receipt_long</mat-icon>فیش‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'/notifications'"><mat-icon matListIcon>notifications</mat-icon>اعلان‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'/settings'"><mat-icon matListIcon>settings</mat-icon>تنظیمات</mat-list-item>
+          <mat-list-item [routerLink]="'/help'"><mat-icon matListIcon>help</mat-icon>راهنما</mat-list-item>
+        </mat-nav-list>
       </mat-expansion-panel>
+
+      <!-- منابع انسانی -->
+      <mat-expansion-panel *ngIf="hasRole(['hr'])" expanded>
+        <mat-expansion-panel-header><mat-panel-title>منابع انسانی</mat-panel-title></mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item [routerLink]="'/leave-calendar'"><mat-icon matListIcon>calendar_month</mat-icon>تقویم مرخصی</mat-list-item>
+          <mat-list-item [routerLink]="'/employee-directory'"><mat-icon matListIcon>groups</mat-icon>فهرست کارکنان</mat-list-item>
+          <mat-list-item [routerLink]="'/documents'"><mat-icon matListIcon>description</mat-icon>مستندات</mat-list-item>
+          <mat-list-item [routerLink]="'/work-report'"><mat-icon matListIcon>bar_chart</mat-icon>گزارش ثبت‌ساعت</mat-list-item>
+          <mat-list-item [routerLink]="'/bills'"><mat-icon matListIcon>receipt_long</mat-icon>فیش‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'/notifications'"><mat-icon matListIcon>notifications</mat-icon>اعلان‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'/settings'"><mat-icon matListIcon>settings</mat-icon>تنظیمات</mat-list-item>
+          <mat-list-item [routerLink]="'/help'"><mat-icon matListIcon>help</mat-icon>راهنما</mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <!-- حسابداری -->
+      <mat-expansion-panel *ngIf="hasRole(['accounting'])" expanded>
+        <mat-expansion-panel-header><mat-panel-title>حسابداری</mat-panel-title></mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item [routerLink]="'/payroll'"><mat-icon matListIcon>account_balance</mat-icon>Payroll</mat-list-item>
+          <mat-list-item [routerLink]="'/bills'"><mat-icon matListIcon>receipt_long</mat-icon>فیش‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'/work-report'"><mat-icon matListIcon>bar_chart</mat-icon>گزارش ثبت‌ساعت</mat-list-item>
+          <mat-list-item [routerLink]="'/notifications'"><mat-icon matListIcon>notifications</mat-icon>اعلان‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'/settings'"><mat-icon matListIcon>settings</mat-icon>تنظیمات</mat-list-item>
+          <mat-list-item [routerLink]="'/help'"><mat-icon matListIcon>help</mat-icon>راهنما</mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
     </mat-accordion>
-    <div style="margin-top:auto;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.1)">
-      <mat-list>
-        <mat-list-item *ngIf="hasRole(['manager','hr','accounting'])" [routerLink]="'/settings'">
-          <img src="/assets/icons/gear.svg" class="icon" />
-          تنظیمات
-        </mat-list-item>
-      </mat-list>
-    </div>
   </mat-sidenav>
+
   <mat-sidenav-content class="content">
-    <ng-content></ng-content>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

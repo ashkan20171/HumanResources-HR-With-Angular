@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -10,7 +11,7 @@ export const routes: Routes = [
       import('./login/login.component').then(m => m.LoginComponent),
   },
 
-  // All authenticated pages are hosted inside the Layout (header + sidebar)
+  // همهٔ صفحات لاگین‌شده داخل لایهٔ Layout
   {
     path: '',
     canActivateChild: [AuthGuard],
@@ -19,63 +20,94 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
-{
-  path: 'employee-directory',
-  loadComponent: () => import('./employee-directory/employee-directory.component').then(m => m.EmployeeDirectoryComponent),
-},
-{
-  path: 'documents',
-  loadComponent: () => import('./documents/documents.component').then(m => m.DocumentsComponent),
-},
-{
-  path: 'help',
-  loadComponent: () => import('./help/help.component').then(m => m.HelpComponent),
-},
-
+      // ==== فقط مدیر/HR/حسابداری (کاربر معمولی ممنوع) ====
       {
         path: 'dashboard',
-        loadComponent: () =>
-          import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
+        data: { roles: ['manager','hr','accounting'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
       },
+
+      // ==== چهار دسترسی کاربر معمولی + مدیر/HR ====
       {
-        path: 'mission',
-        loadComponent: () =>
-          import('./mission/mission.component').then(m => m.MissionComponent),
+        path: 'register-hourse',
+        data: { roles: ['user','manager','hr'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./register-hourse/register-hourse.component').then(m => m.RegisterHourseComponent),
       },
       {
         path: 'leave',
-        loadComponent: () =>
-          import('./leave/leave.component').then(m => m.LeaveComponent),
+        data: { roles: ['user','manager','hr'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./leave/leave.component').then(m => m.LeaveComponent),
       },
       {
-        path: 'register-hourse',
-        loadComponent: () =>
-          import('./register-hourse/register-hourse.component').then(m => m.RegisterHourseComponent),
+        path: 'mission',
+        data: { roles: ['user','manager','hr'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./mission/mission.component').then(m => m.MissionComponent),
       },
       {
         path: 'bills',
-        loadComponent: () =>
-          import('./bills/bills.component').then(m => m.BillsComponent),
+        data: { roles: ['user','manager','hr','accounting'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./bills/bills.component').then(m => m.BillsComponent),
       },
+
+      // ==== صفحات مخصوص نقش‌ها (کاربر معمولی ممنوع) ====
       {
         path: 'notifications',
-        loadComponent: () =>
-          import('./notifications/notifications.component').then(m => m.NotificationsComponent),
+        data: { roles: ['manager','hr','accounting'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./notifications/notifications.component').then(m => m.NotificationsComponent),
       },
       {
         path: 'leave-calendar',
-        loadComponent: () =>
-          import('./leave-calendar/leave-calendar.component').then(m => m.LeaveCalendarComponent),
+        data: { roles: ['manager','hr'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./leave-calendar/leave-calendar.component').then(m => m.LeaveCalendarComponent),
       },
       {
         path: 'work-report',
-        loadComponent: () =>
-          import('./work-report/work-report.component').then(m => m.WorkReportComponent),
+        data: { roles: ['manager','hr','accounting'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./work-report/work-report.component').then(m => m.WorkReportComponent),
+      },
+      {
+        path: 'employee-directory',
+        data: { roles: ['manager','hr'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./employee-directory/employee-directory.component').then(m => m.EmployeeDirectoryComponent),
+      },
+      {
+        path: 'documents',
+        data: { roles: ['manager','hr'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./documents/documents.component').then(m => m.DocumentsComponent),
+      },
+      {
+        path: 'help',
+        data: { roles: ['manager','hr','accounting'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./help/help.component').then(m => m.HelpComponent),
+      },
+      {
+        path: 'approvals',
+        data: { roles: ['manager'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./approvals/approvals.component').then(m => m.ApprovalsComponent),
+      },
+      {
+        path: 'payroll',
+        data: { roles: ['accounting'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./payroll/payroll.component').then(m => m.PayrollComponent),
       },
       {
         path: 'settings',
-        loadComponent: () =>
-          import('./settings/settings.component').then(m => m.SettingsComponent),
+        data: { roles: ['manager','hr','accounting'] },
+        canMatch: [RoleGuard],
+        loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent),
       },
     ],
   },
