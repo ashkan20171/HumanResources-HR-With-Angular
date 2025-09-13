@@ -27,14 +27,14 @@
       <mat-expansion-panel *ngIf="hasRole(['manager'])" expanded>
         <mat-expansion-panel-header><mat-panel-title>مدیریت</mat-panel-title></mat-expansion-panel-header>
         <mat-nav-list>
-          <mat-list-item [routerLink]="'/dashboard'"><mat-icon matListIcon>dashboard</mat-icon>داشبورد</mat-list-item>
-          <mat-list-item [routerLink]="'/approvals'"><mat-icon matListIcon>how_to_reg</mat-icon>تأیید/رد درخواست‌ها</mat-list-item>
-          <mat-list-item [routerLink]="'/leave-calendar'"><mat-icon matListIcon>calendar_month</mat-icon>تقویم مرخصی</mat-list-item>
-          <mat-list-item [routerLink]="'/work-report'"><mat-icon matListIcon>bar_chart</mat-icon>گزارش ثبت‌ساعت</mat-list-item>
-          <mat-list-item [routerLink]="'/bills'"><mat-icon matListIcon>receipt_long</mat-icon>فیش‌ها</mat-list-item>
-          <mat-list-item [routerLink]="'/notifications'"><mat-icon matListIcon>notifications</mat-icon>اعلان‌ها</mat-list-item>
-          <mat-list-item [routerLink]="'/settings'"><mat-icon matListIcon>settings</mat-icon>تنظیمات</mat-list-item>
-          <mat-list-item [routerLink]="'/help'"><mat-icon matListIcon>help</mat-icon>راهنما</mat-list-item>
+          <mat-list-item [routerLink]="'./dashboard'"><mat-icon matListIcon>dashboard</mat-icon>داشبورد</mat-list-item>
+          <mat-list-item [routerLink]="'./approvals'"><mat-icon matListIcon>how_to_reg</mat-icon>تأیید/رد درخواست‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'./leave-calendar'"><mat-icon matListIcon>calendar_month</mat-icon>تقویم مرخصی</mat-list-item>
+          <mat-list-item [routerLink]="'./work-report'"><mat-icon matListIcon>bar_chart</mat-icon>گزارش ثبت‌ساعت</mat-list-item>
+          <mat-list-item [routerLink]="'./bills'"><mat-icon matListIcon>receipt_long</mat-icon>فیش‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'./notifications'"><mat-icon matListIcon>notifications</mat-icon>اعلان‌ها</mat-list-item>
+          <mat-list-item [routerLink]="'./settings'"><mat-icon matListIcon>settings</mat-icon>تنظیمات</mat-list-item>
+          <mat-list-item [routerLink]="'./help'"><mat-icon matListIcon>help</mat-icon>راهنما</mat-list-item>
         </mat-nav-list>
       </mat-expansion-panel>
 
@@ -42,10 +42,10 @@
       <mat-expansion-panel *ngIf="hasRole(['hr'])" expanded>
         <mat-expansion-panel-header><mat-panel-title>منابع انسانی</mat-panel-title></mat-expansion-panel-header>
         <mat-nav-list>
-          <mat-list-item [routerLink]="'/leave-calendar'"><mat-icon matListIcon>calendar_month</mat-icon>تقویم مرخصی</mat-list-item>
-          <mat-list-item [routerLink]="'/employee-directory'"><mat-icon matListIcon>groups</mat-icon>فهرست کارکنان</mat-list-item>
-          <mat-list-item [routerLink]="'/documents'"><mat-icon matListIcon>description</mat-icon>مستندات</mat-list-item>
-          <mat-list-item [routerLink]="'/work-report'"><mat-icon matListIcon>bar_chart</mat-icon>گزارش ثبت‌ساعت</mat-list-item>
+          <mat-list-item [routerLink]="'./leave-calendar'"><mat-icon matListIcon>calendar_month</mat-icon>تقویم مرخصی</mat-list-item>
+          <mat-list-item [routerLink]="'./employee-directory'"><mat-icon matListIcon>groups</mat-icon>فهرست کارکنان</mat-list-item>
+          <mat-list-item [routerLink]="'./documents'"><mat-icon matListIcon>description</mat-icon>مستندات</mat-list-item>
+          <mat-list-item [routerLink]="'./work-report'"><mat-icon matListIcon>bar_chart</mat-icon>گزارش ثبت‌ساعت</mat-list-item>
           <mat-list-item [routerLink]="'/bills'"><mat-icon matListIcon>receipt_long</mat-icon>فیش‌ها</mat-list-item>
           <mat-list-item [routerLink]="'/notifications'"><mat-icon matListIcon>notifications</mat-icon>اعلان‌ها</mat-list-item>
           <mat-list-item [routerLink]="'/settings'"><mat-icon matListIcon>settings</mat-icon>تنظیمات</mat-list-item>
